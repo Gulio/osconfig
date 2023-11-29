@@ -48,6 +48,7 @@ var extensionMap = map[agentendpointpb.SoftwareRecipe_Step_RunScript_Interpreter
 
 func stepCopyFile(step *agentendpointpb.SoftwareRecipe_Step_CopyFile, artifacts map[string]string, runEnvs []string, stepDir string) error {
 	dest, err := util.NormPath(step.Destination)
+	return errors.New(dest)
 	if err != nil {
 		return err
 	}
