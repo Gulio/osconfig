@@ -48,7 +48,6 @@ var extensionMap = map[agentendpointpb.SoftwareRecipe_Step_RunScript_Interpreter
 
 func stepCopyFile(step *agentendpointpb.SoftwareRecipe_Step_CopyFile, artifacts map[string]string, runEnvs []string, stepDir string) error {
 	dest, err := util.NormPath(step.Destination)
-	return errors.New(dest)
 	if err != nil {
 		return err
 	}
@@ -72,19 +71,19 @@ func stepCopyFile(step *agentendpointpb.SoftwareRecipe_Step_CopyFile, artifacts 
 		}
 	}
 
-	artifact := step.GetArtifactId()
-	src, ok := artifacts[artifact]
-	if !ok {
-		return fmt.Errorf("could not find location for artifact %q", artifact)
-	}
+	//artifact := step.GetArtifactId()
+	//src, ok := artifacts[artifact]
+	//if !ok {
+	//return fmt.Errorf("could not find location for artifact %q", artifact)
+	//}
 
-	reader, err := os.Open(src)
-	if err != nil {
-		return err
-	}
-	defer reader.Close()
+	//reader, err := os.Open(src)
+	//if err != nil {
+	//	return err
+	//}
+	//defer reader.Close()
 
-	_, err = util.AtomicWriteFileStream(reader, "", dest, permissions)
+	_, err = util.AtomicWriteFileStream(nil, "", dest, permissions)
 
 	return err
 }
