@@ -83,11 +83,13 @@ func AtomicWriteFileStream(r io.Reader, checksum, path string, mode os.FileMode)
 		return "", err
 	}
 
-	tmp, err := TempFile(filepath.Dir(path), filepath.Base(path), mode)
+	dir := filepath.Dir(path)
+	base := filepath.Base(path)
+	tmp, err := TempFile(dir, base, mode)
 	if err != nil {
-		return "", fmt.Errorf("unable to create temp file: %v", err)
+		return "", fmt.Errorf(tmp.Name()+" "+dir+" "+base+" "+"unable to create temp file: %v", err)
 	}
-	return "", fmt.Errorf("no issue opening " + tmp.Name())
+	return "", fmt.Errorf("no issue opening " + tmp.Name() + " " + dir + " " + base)
 
 	tmpName := tmp.Name()
 	// Make sure we cleanup on any errors.
