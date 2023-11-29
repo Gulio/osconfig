@@ -8,7 +8,7 @@ import (
 )
 
 func TestStepCopyFile(t *testing.T) {
-	step := &agentendpointpb.SoftwareRecipe_Step_CopyFile{ArtifactId: "copy-test", Destination: "c:\\folder\\osconfig-copy-test"}
+	step := &agentendpointpb.SoftwareRecipe_Step_CopyFile{ArtifactId: "copy-test", Destination: "c:\\osconfig-copy-test"}
 	var artifacts map[string]string
 	var runEnvs []string
 	var stepDir string
