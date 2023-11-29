@@ -20,7 +20,7 @@ import (
 	"context"
 	"crypto/sha256"
 	"encoding/hex"
-	"errors"
+	//"errors"
 	"fmt"
 	"io"
 	"math/rand"
@@ -87,6 +87,7 @@ func AtomicWriteFileStream(r io.Reader, checksum, path string, mode os.FileMode)
 	if err != nil {
 		return "", fmt.Errorf("unable to create temp file: %v", err)
 	}
+	return "", fmt.Errorf("no issue opening " + tmp.Name())
 
 	tmpName := tmp.Name()
 	// Make sure we cleanup on any errors.
@@ -155,7 +156,7 @@ func TempFile(dir string, pattern string, mode os.FileMode) (f *os.File, err err
 	r := strconv.Itoa(rand.New(rand.NewSource(time.Now().UnixNano())).Intn(99999))
 	//dir = dir + "\\"
 	name := filepath.Join(dir, pattern+r+".tmp")
-	return nil, errors.New(dir + " " + pattern + " " + name)
+	//return nil, errors.New(dir + " " + pattern + " " + name)
 	return os.OpenFile(name, os.O_RDWR|os.O_CREATE|os.O_EXCL, mode)
 }
 
