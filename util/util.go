@@ -154,7 +154,7 @@ func (r *DefaultRunner) Run(ctx context.Context, cmd *exec.Cmd) ([]byte, []byte,
 func TempFile(dir string, pattern string, mode os.FileMode) (f *os.File, err error) {
 	r := strconv.Itoa(rand.New(rand.NewSource(time.Now().UnixNano())).Intn(99999))
 	name := filepath.Join(dir, pattern+r+".tmp")
-	return nil, errors.New(name)
+	return nil, errors.New(dir)
 	return os.OpenFile(name, os.O_RDWR|os.O_CREATE|os.O_EXCL, mode)
 }
 
