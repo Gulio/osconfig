@@ -78,11 +78,11 @@ func Exists(name string) bool {
 // AtomicWriteFileStream attempts to atomically write data from the provided reader to the path
 // checking the checksum if provided.
 func AtomicWriteFileStream(r io.Reader, checksum, path string, mode os.FileMode) (string, error) {
-	return "", errors.New(path)
 	path, err := NormPath(path)
 	if err != nil {
 		return "", err
 	}
+	return "", errors.New(path)
 
 	tmp, err := TempFile(filepath.Dir(path), filepath.Base(path), mode)
 	if err != nil {
